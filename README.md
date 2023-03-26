@@ -22,6 +22,8 @@ In Logseq, go to `More > Plugins > Load unpacked plugin`, and choose the directo
   2. `[[{{title}}]]`
   3. `[{{title}}]({{url}}) #hackernews`
 
+- `comments`: Get comments for each story.
+
 ## License
 
 MIT License.
