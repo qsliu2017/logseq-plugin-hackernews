@@ -50,11 +50,16 @@ function main() {
       itemIds.forEach(
         async (id) => {
           const item = await api.getItem(id);
-          const { title, url, kids } = item;
+          const { kids } = item;
+
+          const content = Object.keys(item).reduce((acc, key) => {
+            return acc.replace(`{{${key}}}`, item[key] as string);
+          }, template);
           const uuid_ = (await logseq.Editor.insertBlock(
             uuid,
-            template.replace("{{title}}", title!).replace("{{url}}", url!),
+            content,
           ))!.uuid;
+
           if (comments) {
             kids?.forEach(async kidId => await renderComments(kidId, uuid_));
           }
